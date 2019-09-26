@@ -1,5 +1,6 @@
-@import "./common/reset.scss";
-
-h1 {
-    color: green;
-}
+@import "./styles/reset.scss";
+@import "./styles/base.scss";
+@import "./styles/components/sidebar.scss";
+@import "./styles/components/hero.scss";
+@import "./styles/components/preview.scss";
+@import "./styles/components/features.scss";

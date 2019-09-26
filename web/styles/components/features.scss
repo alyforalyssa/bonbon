@@ -1,0 +1,19 @@
+@import "../variables.scss";
+
+.feature-container {
+  max-width: $lg;
+  background: #FFF;
+  min-height: $size-11;
+  margin: $size-6 auto;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.08);
+  padding: $size-7;
+}
+.feature--text--container {
+  width: 50%;
+}
+
+.features--floating--deco {
+  position: absolute;
+right: 0;
+width: 400px;
+}

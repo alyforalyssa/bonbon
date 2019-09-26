@@ -1,0 +1,66 @@
+@import "../variables.scss";
+
+.hero {
+  max-width: $lg;
+  margin: $size-7 auto 0 auto;
+  height: 600px;
+  display: flex;
+}
+.hero--image--container {
+  position: relative;
+      width: 70%;
+      left: -10%;
+}
+.hero--text--container {
+  width: 40%;
+position: relative;
+margin: auto;
+left: -10%;
+}
+.hero--img--deco {
+  position: absolute;
+    right: calc(-20% - 100px);
+    z-index: -1;
+    top: -200px;
+}
+.hero--img {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.hero--svg {
+  position: absolute;
+  z-index: -2;
+  top:$size-6
+}
+
+.hero--picture--wall {
+  height: 500px;
+  .title {
+    color: $mainBlueaprimary;
+  }
+  position: relative;
+  max-width: $lg;
+  margin: 0 auto;
+  display: flex;
+}
+.hero--bg {
+  position: absolute;
+  z-index: -3;
+  left: 0;
+}
+.hero--picture--wall--pictures {
+  width: 50%;
+}
+.hero--picture--wall--planets {
+  width: 150%;
+top: -100px;
+position: relative;
+left: calc(-50% - 200px);
+}
+.hero--picture--wall--text {
+  width: 50%;
+      left: -10%;
+      position: relative;
+      margin: auto auto auto 0;
+}

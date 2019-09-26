@@ -17,8 +17,10 @@ export const webpackDevServer = async () => {
 
   const options: WebpackDevServer.Configuration = {
     contentBase: "./web/dist",
-    host: "localhost",
+    host: "0.0.0.0",
     stats: "minimal",
+    publicPath: "/",
+    historyApiFallback: true,
   };
 
   // this is necessary for live reload to work

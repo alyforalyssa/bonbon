@@ -1,0 +1,29 @@
+@import "../variables.scss";
+.sidebar {
+  width: 200px;
+  min-height: 90vh;
+  margin-top: $size-6;
+  margin-left: $size-4;
+}
+.sidebar__tab {
+  min-height: 90vh;
+}
+.sidebar > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
+  background: #fff;
+  padding: 16px;
+}
+
+.sidebar > .ant-tabs-card > .ant-tabs-bar {
+  border-color: #fff;
+  margin: 0px;
+}
+
+.sidebar > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+  border-color: transparent;
+  background: transparent;
+}
+
+.sidebar > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+  border-color: #fff;
+  background: #fff;
+}

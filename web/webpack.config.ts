@@ -8,7 +8,7 @@ const distPath = path.join(srcPath, "dist");
 
 const config: webpack.Configuration = {
   devServer: {
-    stats: "minimal",
+    historyApiFallback: true,
   },
   entry: {
     index: path.join(srcPath, "index.tsx"),
@@ -16,6 +16,14 @@ const config: webpack.Configuration = {
   mode: "development",
   module: {
     rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
       {
         loader: "ts-loader",
         test: /\.tsx?$/,
@@ -37,11 +45,11 @@ const config: webpack.Configuration = {
   output: {
     filename: "[name].[hash].js",
     path: distPath,
-    sourceMapFilename: "[file].map.json",
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      chunks: ["index"],
+      chunks: ["index", "vendors"],
       template: path.join(srcPath, "index.ejs"),
       title: "<PAGE TITLE>",
     }),

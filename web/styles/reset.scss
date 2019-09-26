@@ -1,7 +1,3 @@
-/*
-  CSS normalization boilerplate
-*/
-
 html {
   box-sizing: border-box;
 }
@@ -11,11 +7,6 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
 html,
 body,
@@ -121,6 +112,7 @@ section {
 }
 body {
   line-height: 1;
+  background:#f5f8fb;
 }
 ol,
 ul {
