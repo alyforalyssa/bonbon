@@ -6,7 +6,6 @@ const init: () => IFrameState = () => {
   return {
     components: [],
     selected: undefined,
-    animations: [],
   };
 };
 
@@ -20,6 +19,34 @@ export const iframeReducer = handleActions(
           components,
         };
         return newState;
+      }
+      return state;
+    },
+    [IFrameActionsType.CONNECT_ANIMATION]: (state, action: any) => {
+      if (action.payload) {
+        const selectedComponent = state.components.find((component) => (
+          component.id === action.payload.componentId
+        ));
+        if (selectedComponent) {
+          const newComponent = {
+            ...selectedComponent,
+            animation: action.payload.animationId,
+          };
+          const newComponents = state.components.slice();
+          const index = newComponents.indexOf(selectedComponent);
+          newComponents[index] = newComponent;
+          const newState: IFrameState = {
+            ...state,
+            components: newComponents,
+          };
+          if (state.selected && state.selected.id === newComponent.id) {
+            newState.selected = newComponent;
+          }
+          console.log(newState);
+          return newState;
+        } else {
+          return state;
+        }
       }
       return state;
     },

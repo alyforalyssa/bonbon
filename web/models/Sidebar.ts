@@ -21,10 +21,12 @@ export interface IAnimationTabState {
 
 export interface IAdvancedbarProps extends IAdvancedbarStateProps, IAdvancedbarActionProps {}
 export interface IAdvancedbarStateProps {
-  animationTabProps: IAnimationTabState;
+  iframeState: IFrameState;
+  animationState: AnimationClass[];
 }
 export interface IAdvancedbarActionProps {
-  animationTabActions: any;
+  iframeActions: any;
+  animationActions: any;
 }
 
 export interface ISidebarProps extends ISidebarStateProps, ISidebarActionProps {}

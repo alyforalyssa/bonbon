@@ -1,5 +1,3 @@
-import { IAnimationClass } from "./Animation";
-
 export interface IFrameState {
   components: IFrameComponent[];
   selected?: IFrameComponent;
@@ -13,16 +11,23 @@ export interface IFrameAddProps {
   componentId: string;
   props?: any;
 }
+
+export interface IFrameConnectAnimationToComponent {
+  componentId: string;
+  animationId: number;
+}
+
 export interface IFrameSelectComponent {
   componentId: string;
 }
 
+// animation is the id in state.animations
 export interface IFrameComponent {
   id: string;
   component: React.ReactNode;
   props?: any;
   propsDetails?: IFrameProps[];
-  animation?: IAnimationClass;
+  animation?: number;
 }
 
 // type determines the ui for edit

@@ -7,6 +7,7 @@ import Row from "antd/lib/row";
 import React from "react";
 import { connect } from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
+import { ianimationActionCreators } from "../actions/animation";
 import { iframeActionCreators } from "../actions/iframe";
 import { animationActionCreators } from "../actions/sidebar";
 import { IRootState } from "../models/Root";
@@ -15,11 +16,11 @@ import { IRootState } from "../models/Root";
 const mapStateToProps:
 (state: IRootState) => any =
   (state) => {
-    const { animationTab, iframe } = state;
+    const { iframe, animations } = state;
     return {
-      previewProps: { iframeState: iframe },
+      previewProps: { iframeState: iframe, animationState: animations },
       sidebarProps: { iframeProps: iframe },
-      advancedbarProps: {animationTabProps: animationTab },
+      advancedbarProps: { iframeState: iframe, animationState: animations },
     };
 };
 
@@ -28,9 +29,10 @@ const mapActionDispatchToProps:
     (dispatch) => {
       const animationTabActions = bindActionCreators(animationActionCreators, dispatch);
       const iframeActions =  bindActionCreators(iframeActionCreators, dispatch);
+      const animationActions = bindActionCreators(ianimationActionCreators, dispatch);
       return {
         sidebarActions: { animationTabActions, iframeActions },
-        advancedbarActions: { animationTabActions },
+        advancedbarActions: { iframeActions, animationActions },
       };
     };
 
