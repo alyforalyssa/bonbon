@@ -1,6 +1,7 @@
 import Advancedbar from "../components/advancedbar";
-import Preview from "../components/preview";
+import IFrame from "../components/iframe";
 import Sidebar from "../components/sidebar";
+import {Preview} from "./preview";
 
 import Col from "antd/lib/col";
 import Row from "antd/lib/row";
@@ -9,40 +10,49 @@ import { connect } from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
 import { ianimationActionCreators } from "../actions/animation";
 import { iframeActionCreators } from "../actions/iframe";
-import { animationActionCreators } from "../actions/sidebar";
+import { userActionCreators } from "../actions/user";
 import { IRootState } from "../models/Root";
 
-// workspace model refine state into sidebar, preview.etc.
+// workspace model refine state into sidebar, iframe.etc.
 const mapStateToProps:
 (state: IRootState) => any =
   (state) => {
-    const { iframe, animations } = state;
+    const { iframe, animations, user } = state;
     return {
-      previewProps: { iframeState: iframe, animationState: animations },
-      sidebarProps: { iframeProps: iframe },
-      advancedbarProps: { iframeState: iframe, animationState: animations },
+      iframeProps: { iframeState: iframe, animationState: animations },
+      advancedbarProps: {
+        iframeState: iframe,
+        animationState: animations,
+        userView: user.view,
+      },
+      sidebarProps: {
+        iframeState: iframe,
+        animationState: animations,
+        userView: user.view,
+      },
     };
 };
 
 const mapActionDispatchToProps:
   (dispatch: Dispatch) => any =
     (dispatch) => {
-      const animationTabActions = bindActionCreators(animationActionCreators, dispatch);
       const iframeActions =  bindActionCreators(iframeActionCreators, dispatch);
       const animationActions = bindActionCreators(ianimationActionCreators, dispatch);
+      const userActions = bindActionCreators(userActionCreators, dispatch);
       return {
-        sidebarActions: { animationTabActions, iframeActions },
+        sidebarActions: { iframeActions, animationActions },
         advancedbarActions: { iframeActions, animationActions },
+        iframeActions: {
+          toggleComponentSelect: iframeActions.toggleComponentSelect,
+          handleUserViewChange:  userActions.handleUserViewChange,
+        },
       };
     };
 
 // workspace props model
 const WorkspaceWithProps = (props: any) => {
   const sidebarProps = {...props.sidebarProps, ...props.sidebarActions};
-  const previewProps = {
-    ...props.previewProps,
-    toggleComponentSelect: props.sidebarActions.iframeActions.toggleComponentSelect,
-  };
+  const iframeProps = { ...props.iframeProps, ...props.iframeActions };
   const advancedbarProps = {...props.advancedbarProps, ...props.advancedbarActions};
   return (
     <Row gutter={16}>
@@ -50,7 +60,8 @@ const WorkspaceWithProps = (props: any) => {
       <Sidebar {...sidebarProps} />
     </Col>
     <Col span={16}>
-      <Preview {...previewProps} />
+      <IFrame {...iframeProps} />
+      <Preview />
       </Col>
       <Col span={4}>
       <Advancedbar {...advancedbarProps}/>

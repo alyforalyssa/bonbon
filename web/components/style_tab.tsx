@@ -64,7 +64,13 @@ export default class StyleTab extends React.Component<ISidebarProps, IStyleTabSt
     this.state = { animations, elements: [] };
   }
   public addClass = (newAnimation: Pick<AnimationClass, "displayName" | "keyframesRule">) => {
-    this.props.animationTabActions.addClass(newAnimation);
+    const animation: AnimationClass = {
+      ...newAnimation,
+      id: this.state.animations.length + 1,
+      keyframesRule: keyframes`${newAnimation.keyframesRule}`,
+      name: newAnimation.displayName.replace(/[^A-Za-z0-9_\.~]+/gm, ""),
+      };
+    this.setState({animations: [...this.state.animations, animation]});
   }
 
   public findAnimationObject = (animationName: string) => {
@@ -134,7 +140,7 @@ export default class StyleTab extends React.Component<ISidebarProps, IStyleTabSt
        >
        New animation
        </Button>
-       {this.props.animationTabProps.animations.map((animation: AnimationClass) => {
+       {this.state.animations.map((animation: AnimationClass) => {
          return (
            <a>{animation.name}</a>
          );

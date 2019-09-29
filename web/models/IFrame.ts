@@ -22,12 +22,13 @@ export interface IFrameSelectComponent {
 }
 
 // animation is the id in state.animations
+// propa details is all the possible props?
 export interface IFrameComponent {
   id: string;
   component: React.ReactNode;
-  props?: any;
+  props?: IAnyPropsObject;
   propsDetails?: IFrameProps[];
-  animation?: number;
+  animation?: string;
 }
 
 // type determines the ui for edit
@@ -38,10 +39,12 @@ export interface IFrameProps {
   handleFormat: (arg0: any) => any;
   type: IFramePropsInput;
 }
+export interface IAnyPropsObject {
+  [key: string]: any;
+}
 export interface IProps {
-  id: string;
-  value: any;
-  details: IFrameProps;
+  all?: IAnyPropsObject;
+  details?: IFrameProps[];
 }
 interface IFramePropsNumberInput {
   id: string;

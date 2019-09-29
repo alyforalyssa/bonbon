@@ -1,16 +1,15 @@
 import Button from "antd/lib/button";
 import React from "react";
 import { IFrameComponent, IFrameState } from "../models/IFrame";
-import { ISidebarProps } from "../models/Sidebar";
+import { IAdvancedbarProps } from "../models/Sidebar";
 
 const Mock = (props: any) => (
-  <div style={{background: "#FFF", width: props.width, height: "400px"}}>{props.text || "hello frend"}</div>
+  <div className={props.className || ""} style={{background: "#FFF", width: props.width, height: "400px"}}>Boo</div>
 );
 const data: IFrameComponent = {
   id: "mock",
   component: <Mock />,
   props: {
-    text: "hello best frend",
     width: "400px",
   },
   propsDetails: [
@@ -30,9 +29,9 @@ const data: IFrameComponent = {
   ],
 };
 export default class ComponentTab extends React.Component<
-  Pick<ISidebarProps, "iframeProps" | "iframeActions">, IFrameState
+  IAdvancedbarProps, IFrameState
 > {
-  constructor(props: Pick<ISidebarProps, "iframeProps" | "iframeActions">) {
+  constructor(props: IAdvancedbarProps) {
     super(props);
     this.init();
   }

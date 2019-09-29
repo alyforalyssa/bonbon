@@ -2,6 +2,7 @@ import React from "react";
 // import { RouteComponentProps } from "react-router";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { App } from "./view/app";
+import { Preview } from "./view/preview";
 import { Workspace } from "./view/workspace";
 
 // const Error = () => (
@@ -35,6 +36,7 @@ const Routes = () => {
     <Router>
       <Switch>
         <Route path="/" exact component={() => <App />} />
+        <Route path="/preview" exact component={() => <Preview />} />
         <Route path="/dashboard" exact component={() => <Workspace />} />
       </Switch>
     </Router>

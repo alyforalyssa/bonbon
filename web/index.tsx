@@ -1,5 +1,6 @@
 import "antd/lib/button/style/css";
 import "antd/lib/col/style/css";
+import "antd/lib/modal/style/css";
 import "antd/lib/row/style/css";
 import "antd/lib/tabs/style/css";
 import React from "react";

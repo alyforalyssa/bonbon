@@ -1,10 +1,12 @@
-import {IAnimationClass} from "./Animation";
+import {IAnimationState} from "./Animation";
 import {IFrameState} from "./IFrame";
 import {IAnimationTabState} from "./Sidebar";
+import {IUserState} from "./User";
 
 export interface IRootState {
   animationTab: IAnimationTabState;
   iframe: IFrameState;
-  animations: IAnimationClass[];
+  animations: IAnimationState;
+  user: IUserState;
   router?: any;
 }

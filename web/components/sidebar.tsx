@@ -11,11 +11,11 @@ const Sidebar = (props: ISidebarProps) => {
       <Tabs type="card">
         <TabPane tab="Style" key="1">
         <div className="sidebar__tab">
-        <PropsTab iframeProps={props.iframeProps} iframeActions={props.iframeActions} />
+        <PropsTab {...props}/>
         </div>
         </TabPane>
         <TabPane tab="Components" key="2">
-          <ComponentTab iframeProps={props.iframeProps} iframeActions={props.iframeActions} />
+          <ComponentTab {...props} />
         </TabPane>
       </Tabs>
     </div>

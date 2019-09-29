@@ -1,6 +1,8 @@
 // import { AnimationActions } from "../actions/sidebar";
 import { Keyframes} from "../styledComponents";
+import { IAnimationState } from "./Animation";
 import { IFrameState } from "./IFrame";
+import { IUserView } from "./User";
 
 export interface AnimationClass {
   id: number;
@@ -22,7 +24,8 @@ export interface IAnimationTabState {
 export interface IAdvancedbarProps extends IAdvancedbarStateProps, IAdvancedbarActionProps {}
 export interface IAdvancedbarStateProps {
   iframeState: IFrameState;
-  animationState: AnimationClass[];
+  userView: IUserView;
+  animationState: IAnimationState;
 }
 export interface IAdvancedbarActionProps {
   iframeActions: any;
@@ -31,12 +34,13 @@ export interface IAdvancedbarActionProps {
 
 export interface ISidebarProps extends ISidebarStateProps, ISidebarActionProps {}
 export interface ISidebarStateProps {
-  animationTabProps: IAnimationTabState;
-  iframeProps: IFrameState;
+  iframeState: IFrameState;
+  userView: IUserView;
+  animationState: IAnimationState;
 }
 export interface ISidebarActionProps {
   iframeActions: any;
-  animationTabActions: any;
+  animationActions: any;
 }
 
 // answer mom

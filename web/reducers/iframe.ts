@@ -1,5 +1,7 @@
 import { handleActions } from "redux-actions";
+import { IAnimationActionsType } from "../actions/animation";
 import { IFrameActionsType } from "../actions/iframe";
+import { IAnimationActionCreateOrEditSnapshot } from "../models/Animation";
 import { IFrameState } from "../models/IFrame";
 
 const init: () => IFrameState = () => {
@@ -39,10 +41,10 @@ export const iframeReducer = handleActions(
             ...state,
             components: newComponents,
           };
+          // update selected component if it is the same
           if (state.selected && state.selected.id === newComponent.id) {
             newState.selected = newComponent;
           }
-          console.log(newState);
           return newState;
         } else {
           return state;
@@ -87,12 +89,41 @@ export const iframeReducer = handleActions(
             ...state,
             components: newComponents,
           };
-          console.log(newState);
+          if (state.selected && state.selected.id === newComponent.id) {
+            newState.selected = newComponent;
+          }
           return newState;
         } else {
           return state;
         }
       }
+      return state;
+    },
+    [IAnimationActionsType.CREATE_OR_EDIT_SNAPSHOT]: (state, action: any) => {
+      // if snapshot timeline is 0 update initial props of iframe elem
+      if (action.payload as IAnimationActionCreateOrEditSnapshot
+        && action.payload.snapshot.timeline === 0) {
+          if (state.selected) {
+            const newComponent = {
+              ...state.selected,
+              props: {
+                ...state.selected.props,
+                ...action.payload.snapshot.props.all,
+              },
+            };
+            const newComponents = state.components.slice();
+            const index = newComponents.indexOf(state.selected);
+            newComponents[index] = newComponent;
+            const newState = {
+              ...state,
+              components: newComponents,
+              selected: newComponent,
+            };
+            return newState;
+          } else {
+            return state;
+          }
+        }
       return state;
     },
   },
