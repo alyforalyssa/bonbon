@@ -4,6 +4,7 @@ import { IAnimationState, ISnapshot } from "../models/Animation";
 import { IFrameComponent } from "../models/IFrame";
 import { IPreviewProps } from "../models/Preview";
 import  { IUserView, IUserViewType } from "../models/User";
+import { PreviewButton } from "./utils";
 const { TabPane } = Tabs;
 
 // state should be just drag and drop UI change ?
@@ -38,7 +39,7 @@ export default class IFrame extends React.Component<IPreviewProps, any> {
   }
     return (
       <Fragment>
-      <Tabs onChange={this.handleSnapshotTabChange}>
+      <Tabs onChange={this.handleSnapshotTabChange} tabBarExtraContent={<PreviewButton />}>
       <TabPane tab="initial" key="initial">
       { iframeState.components.map(
         (child: IFrameComponent) => {

@@ -1,7 +1,5 @@
-import Advancedbar from "../components/advancedbar";
 import IFrame from "../components/iframe";
 import Sidebar from "../components/sidebar";
-import {Preview} from "./preview";
 
 import Col from "antd/lib/col";
 import Row from "antd/lib/row";
@@ -53,18 +51,13 @@ const mapActionDispatchToProps:
 const WorkspaceWithProps = (props: any) => {
   const sidebarProps = {...props.sidebarProps, ...props.sidebarActions};
   const iframeProps = { ...props.iframeProps, ...props.iframeActions };
-  const advancedbarProps = {...props.advancedbarProps, ...props.advancedbarActions};
   return (
-    <Row gutter={16}>
-    <Col span={4}>
+    <Row gutter={16} style={{margin: "auto", padding: "0 128px"}}>
+    <Col span={6}>
       <Sidebar {...sidebarProps} />
     </Col>
-    <Col span={16}>
+    <Col span={18}>
       <IFrame {...iframeProps} />
-      <Preview />
-      </Col>
-      <Col span={4}>
-      <Advancedbar {...advancedbarProps}/>
       </Col>
     </Row>
   );

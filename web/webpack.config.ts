@@ -7,9 +7,6 @@ const srcPath = __dirname;
 const distPath = path.join(srcPath, "dist");
 
 const config: webpack.Configuration = {
-  devServer: {
-    historyApiFallback: true,
-  },
   entry: {
     index: path.join(srcPath, "index.tsx"),
   },

@@ -1,9 +1,10 @@
 import Tabs from "antd/lib/tabs";
 import React from "react";
-import ComponentTab from "./component_tab";
+// import ComponentTab from "./component_tab";
 import PropsTab from "./props_tab";
 const { TabPane } = Tabs;
 import { ISidebarProps } from "../models/Sidebar";
+import Advancedbar from "./advancedbar";
 
 const Sidebar = (props: ISidebarProps) => {
   return (
@@ -14,9 +15,12 @@ const Sidebar = (props: ISidebarProps) => {
         <PropsTab {...props}/>
         </div>
         </TabPane>
-        <TabPane tab="Components" key="2">
-          <ComponentTab {...props} />
+        <TabPane tab="Animation" key="animation">
+          <Advancedbar {...props} />
         </TabPane>
+        {/* <TabPane tab="Components" key="2">
+          <ComponentTab {...props} />
+        </TabPane> */}
       </Tabs>
     </div>
   );

@@ -1,14 +1,12 @@
-import Button from "antd/lib/button";
 import React from "react";
 import { IFrameComponent, IFrameState } from "../models/IFrame";
-import { IAdvancedbarProps } from "../models/Sidebar";
 
 const Basic = (props: any) => {
   const { width, height, background, opacity, className } = props;
   return (
     <div className={className || ""} style={{
       width, height, background, opacity,
-    }}/>
+    }}></div>
   );
 };
 const data: IFrameComponent = {
@@ -55,22 +53,8 @@ const data: IFrameComponent = {
     },
   ],
 };
-export default class ComponentTab extends React.Component<
-  IAdvancedbarProps, IFrameState
-> {
-  constructor(props: IAdvancedbarProps) {
-    super(props);
-    this.init();
-  }
-  public init = () => {
-    this.state = { components: [] };
-  }
-  public render() {
-    const { iframeActions } = this.props;
-    return (
-      <div>
-      <Button onClick={() => iframeActions.createComponent({component: data})}>add component</Button>
-      </div>
-    );
-  }
-}
+
+export const iframeReducerInit: () => IFrameState = () => ({
+  components: [data],
+  selected: data,
+});

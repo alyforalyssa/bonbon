@@ -54,8 +54,31 @@ interface IFramePropsNumberInput {
   minValue?: number;
   maxValue?: number;
 }
+interface IFramePropsSliderInput {
+  id: string;
+  kind: "slider";
+  label: string;
+  placeholder?: number;
+  minValue?: number;
+  maxValue?: number;
+  formatter?: (value: number) => string;
+}
+interface IFramePropsColorPickerInput {
+  id: string;
+  kind: "colorPicker";
+  label: string;
+  defaultColor?: string;
+}
+interface IFramePropsSelectInput {
+  id: string;
+  kind: "select";
+  label: string;
+  defaultValue?: string;
+  values: string[];
+}
 
-export type IFramePropsInput =  IFramePropsNumberInput;
+export type IFramePropsInput =
+IFramePropsNumberInput | IFramePropsSliderInput | IFramePropsColorPickerInput | IFramePropsSelectInput;
 
 interface IBasicInput {
   id: string;

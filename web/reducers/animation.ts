@@ -18,6 +18,7 @@ export const animationReducer = handleActions(
           ...state,
         };
         newState[animationId] = newAnimation;
+        console.log(newState);
         return newState;
       }
       return state;

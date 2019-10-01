@@ -44,7 +44,7 @@ const generateKeyframes: (snapshots: ISnapshot[]) => Keyframes = (snapshots) => 
       const { all } = snapshot.props;
       if (all) {
         Object.keys(all).forEach((prop: string) => {
-          generatedKeyframe += ` ${prop}: ${all[prop]}`;
+          generatedKeyframe += ` ${prop}: ${all[prop]};`;
         });
       }
       generatedKeyframe += "}";
@@ -78,7 +78,6 @@ const PreviewWithProps = (props: any) => {
         },
       );
     setAnimatedComponents(customComponents);
-    console.log(animatedComponents);
   }, [animations]);
   return (
     <div id="animtion--preview">

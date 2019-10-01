@@ -3,13 +3,7 @@ import { IAnimationActionsType } from "../actions/animation";
 import { IFrameActionsType } from "../actions/iframe";
 import { IAnimationActionCreateOrEditSnapshot } from "../models/Animation";
 import { IFrameState } from "../models/IFrame";
-
-const init: () => IFrameState = () => {
-  return {
-    components: [],
-    selected: undefined,
-  };
-};
+import { iframeReducerInit } from "./init";
 
 export const iframeReducer = handleActions(
   {
@@ -127,5 +121,5 @@ export const iframeReducer = handleActions(
       return state;
     },
   },
-  init(),
+  iframeReducerInit(),
 );

@@ -1,9 +1,7 @@
 @import "../variables.scss";
 .sidebar {
-  width: 200px;
+  width: 100%;
   min-height: 90vh;
-  margin-top: $size-6;
-  margin-left: $size-4;
 }
 .sidebar__tab {
   min-height: 90vh;

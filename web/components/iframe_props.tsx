@@ -1,10 +1,14 @@
+import Col from "antd/lib/col";
 import DatePicker from "antd/lib/date-picker";
 import Input from "antd/lib/input";
 import InputNumber from "antd/lib/input-number";
 import Radio from "antd/lib/radio";
+import Row from "antd/lib/row";
 import Select from "antd/lib/select";
-// import Spin from "antd/lib/spin";
+import Slider from "antd/lib/slider";
 import React, { Fragment, useState } from "react";
+// import Spin from "antd/lib/spin";
+import { TwitterPicker} from "react-color";
 import { FormInputs, IFramePropsInput } from "../models/IFrame";
 
 const InputGroup = Input.Group;
@@ -23,7 +27,13 @@ export const IFramePropsInputContent: React.FunctionComponent<
   input,
   handleChange,
 }) => {
-  const state: any = {};
+  const [state, setState] = useState<any>({});
+  const onChange = (val: any) => {
+      const newState: any = {};
+      newState[input.id] = val;
+      setState(newState);
+      handleChange(newState);
+  };
   switch (input.kind) {
     case "number":
       return (
@@ -35,13 +45,74 @@ export const IFramePropsInputContent: React.FunctionComponent<
           min={input.minValue || 0}
           max={input.maxValue || Number.MAX_SAFE_INTEGER}
           defaultValue={input.placeholder || 0}
-          onChange={(val) => {
-            state[input.id] = val;
-            handleChange(state);
+          onChange={onChange}
+          />
+        </Fragment>
+      );
+    case "colorPicker":
+      return (
+        <Fragment>
+        <label className="basic-label" >{input.label}</label>
+        <TwitterPicker
+          width={"100%"}
+          color={state[input.id] || input.defaultColor || "#fff"}
+          onChangeComplete={(color: any) => {
+            const newState: any = {};
+            newState[input.id] = color.hex;
+            setState(newState);
+            handleChange(newState);
           }}
           />
         </Fragment>
       );
+    case "slider":
+      return (
+        <Fragment>
+        <label className="basic-label" >{input.label}</label>
+        <Row>
+        <Col span={16}>
+        <Slider
+          defaultValue={input.placeholder}
+          min={input.minValue || 1}
+          max={input.maxValue || Number.MAX_SAFE_INTEGER}
+          onChange={onChange}
+          tipFormatter={input.formatter}
+        />
+        </Col>
+        <Col span={4}>
+          <InputNumber
+            placeholder={input.placeholder ? input.placeholder.toString() : undefined}
+            min={input.minValue || 1}
+            max={input.maxValue || Number.MAX_SAFE_INTEGER}
+            style={{ marginLeft: 16 }}
+            value={state[input.id]}
+            onChange={onChange}
+          />
+        </Col>
+        </Row>
+        </Fragment>
+      );
+      case "select":
+        return (
+          <Fragment>
+          <label className="basic-label" >{input.label}</label>
+          <Radio.Group
+            style={defaultStyle}
+            defaultValue={input.defaultValue}
+            buttonStyle="solid"
+            onChange={(e) => {
+              const newState: any = {};
+              newState[input.id] = e.target.value;
+              setState(newState);
+              handleChange(newState);
+            }}
+          >
+            {input.values.map((value: any) => (
+              <Radio.Button key={value} value={value}>{value}</Radio.Button>
+            ))}
+          </Radio.Group>
+          </Fragment>
+        );
   }
 };
 const FormInputContent: React.FunctionComponent<
