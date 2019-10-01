@@ -41,6 +41,7 @@ const mapActionDispatchToProps:
         sidebarActions: { iframeActions, animationActions },
         advancedbarActions: { iframeActions, animationActions },
         iframeActions: {
+          addOrEditSnapshot: animationActions.createOrEditSnapshot,
           toggleComponentSelect: iframeActions.toggleComponentSelect,
           handleUserViewChange:  userActions.handleUserViewChange,
         },

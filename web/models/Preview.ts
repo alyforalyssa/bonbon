@@ -9,4 +9,5 @@ export interface IPreviewStateProps {
 export interface IPreviewActionsProps {
   toggleComponentSelect: any;
   handleUserViewChange: any;
+  addOrEditSnapshot: any;
 }
